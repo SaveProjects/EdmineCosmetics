@@ -1,0 +1,67 @@
+#
+# Fichier configuration des cosmetiques par Edmine Network.
+# Dev: N12cf
+# Version: 0.1
+#
+
+# Liste des variables (accens, informations, emojies):
+# Accens (alphabet):
+# - {e1} = é, {e2} = è, {e3} = ê, {i1} = î, {a1} = à, {a2} = â, {o1} ô.
+#
+# Informations:
+# - {spigot_online} = Liste des joueurs, {server_id} = ID généré par le serveur,
+# {player_name} = Pseudo du joueur, {fragments_dames} = Economie, {eclats_divins} = Economie,
+# {argent} = Economie.
+#
+# Emojies:
+# - {love} = ❤, {valide} = ✔, {unvalid} = ✘, {flocon} = ✵, {eclats} = ❁, {money} = ✪,
+# {star} = ✯, {right} = ➡, {left} = ⬅, {up} = ⬆, {down} = ⬇, {right_select} = ➟,
+# {alert} = ⚠, {separator} = », {inverseseparator} = «, {euro} = €.
+
+cosmetics:
+  type:
+    montures:
+      loup:
+        referenceid: 123456
+        managemount: 'wolf'
+    ballons:
+      rouge:
+        referenceid:
+        headurl: ''
+    titres:
+      gigachad:
+        referenceid:
+        title: '&c&lGiga Chad'
+    compagnons:
+      frog:
+        referenceid: 123456
+        animation: 'null'
+        invisible: 'no'
+        headurl: ''
+        iteminhand: 'null'
+        itemisenchant: 'no'
+        chestplate:
+          type: 'leather'
+          color:
+            r: 0
+            g: 0
+            b: 0
+          isenchant: 'yes'
+        leggings:
+          type: 'leather'
+          color:
+            r: 0
+            g: 0
+            b: 0
+          isenchant: 'yes'
+        boots:
+          type: 'leather'
+          color:
+            r: 0
+            g: 0
+            b: 0
+          isenchant: 'yes'
+    emotes:
+      smiley:
+        referenceid: 123456
+        headurl: ''

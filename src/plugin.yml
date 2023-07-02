@@ -1,0 +1,7 @@
+name: EdmineCosmetics
+version: 0.1
+author: EdmineCoreTeam
+main: fr.edminecoreteam.cosmetics.Main
+commands:
+  edcosmetics:
+    description: Commande principale
