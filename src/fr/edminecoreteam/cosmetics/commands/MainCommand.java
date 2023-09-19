@@ -32,7 +32,7 @@ public class MainCommand implements CommandExecutor
 					ListenerFamilier.despawnCompagnons(p);
 					ListenerTitre.despawnTitre(p);
 					cListener.updateMonture(0);
-					p.sendMessage("§9§lCosmétiques §8» §fLa totalité de vos cosmétiques ont été désactivés.");
+					//p.sendMessage("§9§lCosmétiques §8» §fLa totalité de vos cosmétiques ont été désactivés.");
 
 				}
 			}
