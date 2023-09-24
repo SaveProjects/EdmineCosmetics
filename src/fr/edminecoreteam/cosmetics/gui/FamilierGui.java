@@ -85,8 +85,9 @@ public class FamilierGui implements Listener
             {
         		if (info.getArticleIDByName() != 0)
                 {
+					int activeFamilier = data.getActiveFamilier();
                 	int articleID = info.getArticleIDByName();
-                	if (data.getActiveFamilier() == articleID)
+                	if (activeFamilier == articleID)
                 	{
                 		CustomFamilierType fListener = new CustomFamilierType(p);
                 		data.updateFamilier(0);
@@ -96,7 +97,7 @@ public class FamilierGui implements Listener
                 	}
                 	else
                 	{
-                		if (data.getActiveFamilier() != 0)
+                		if (activeFamilier != 0)
                 		{
                 			data.updateFamilier(articleID);
                     		for (String articles : api.getConfig().getConfigurationSection("cosmetics.type.compagnons").getKeys(false))
@@ -245,14 +246,14 @@ public class FamilierGui implements Listener
             
             int slot = 20;
         	int cosmeticsCount = 0;
+			int activeFamilier = data.getActiveFamilier();
             for (Integer friends : pGestion.getCosmeticsForPage(Page, "compagnons")) {
             	++cosmeticsCount;
-            	StoreInfo info = new StoreInfo(friends);
             	ItemStack cosmetic = getSkull("http://textures.minecraft.net/texture/" + CosmeticsListListener.cosmeticSkull.get(friends));
                 ItemMeta cosmeticM = cosmetic.getItemMeta();
                 cosmeticM.setDisplayName(CosmeticsListListener.familierList.get(friends).replace("&7Compagnon:_", "").replace("&", "§").replace("_", " "));
                 ArrayList<String> lorecosmetic = new ArrayList<String>();
-                if (data.getActiveFamilier() == friends)
+                if (activeFamilier == friends)
                 {
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §aDescription:");

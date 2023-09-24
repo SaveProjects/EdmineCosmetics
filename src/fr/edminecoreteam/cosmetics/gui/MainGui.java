@@ -232,11 +232,12 @@ public class MainGui implements Listener
         
         if (monturebuy.size() != 0)
         {
-        	if (data.getActiveMonture() != 0)
+            Integer activeMonture = data.getActiveMonture();
+        	if (activeMonture != 0)
         	{
 				StoreInfo buyInfo = new StoreInfo(data.getActiveMonture());
         		
-        		ItemStack montures = getSkull("http://textures.minecraft.net/texture/" + buyInfo.getArticleSkull());
+        		ItemStack montures = getSkull("http://textures.minecraft.net/texture/" +CosmeticsListListener.cosmeticSkull.get(activeMonture));
                 ItemMeta monturesM = montures.getItemMeta();
                 monturesM.setDisplayName("§6§lMontures");
                 ArrayList<String> loremontures = new ArrayList<String>();
@@ -247,7 +248,7 @@ public class MainGui implements Listener
                 loremontures.add(" §f  §7visitez le lobby entier !");
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
-                loremontures.add(" §f▶ §7Monture actif: §e" + buyInfo.getArticleName().replace("&7Monture:_", "").replace("&", "§"));
+                loremontures.add(" §f▶ §7Monture actif: §e" + CosmeticsListListener.montureList.get(activeMonture).replace("&7Monture:_", "").replace("&", "§"));
                 loremontures.add(" §f▶ §7Monture possédés: §a" + monturebuy.size() + "§a/" + CosmeticsListListener.montureList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
@@ -298,11 +299,10 @@ public class MainGui implements Listener
         
         if (familierbuy.size() != 0)
         {
-        	if (data.getActiveFamilier() != 0)
+            Integer activeFamilier = data.getActiveFamilier();
+        	if (activeFamilier != 0)
         	{
-				StoreInfo buyInfo = new StoreInfo(data.getActiveFamilier());
-        		
-        		ItemStack montures = getSkull("http://textures.minecraft.net/texture/" + buyInfo.getArticleSkull());
+        		ItemStack montures = getSkull("http://textures.minecraft.net/texture/" + CosmeticsListListener.cosmeticSkull.get(activeFamilier));
                 ItemMeta monturesM = montures.getItemMeta();
                 monturesM.setDisplayName("§d§lCompagnons");
                 ArrayList<String> loremontures = new ArrayList<String>();
@@ -313,7 +313,7 @@ public class MainGui implements Listener
                 loremontures.add(" §f  §7acompagnera dans le lobby !");
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
-                loremontures.add(" §f▶ §7Compagnon actif: §e" + buyInfo.getArticleName().replace("&7Compagnon:_", "").replace("&", "§").replace("_", " "));
+                loremontures.add(" §f▶ §7Compagnon actif: §e" + CosmeticsListListener.familierList.get(activeFamilier).replace("&7Compagnon:_", "").replace("&", "§").replace("_", " "));
                 loremontures.add(" §f▶ §7Compagnon possédés: §a" + familierbuy.size() + "§a/" + CosmeticsListListener.familierList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
@@ -364,11 +364,10 @@ public class MainGui implements Listener
         
         if (ballonbuy.size() != 0)
         {
-        	if (data.getActiveBallon() != 0)
+            Integer activeBallon = data.getActiveBallon();
+        	if (activeBallon != 0)
         	{
-				StoreInfo buyInfo = new StoreInfo(data.getActiveBallon());
-        		
-        		ItemStack montures = getSkull("http://textures.minecraft.net/texture/" + buyInfo.getArticleSkull());
+        		ItemStack montures = getSkull("http://textures.minecraft.net/texture/" + CosmeticsListListener.cosmeticSkull.get(activeBallon));
                 ItemMeta monturesM = montures.getItemMeta();
                 monturesM.setDisplayName("§b§lBallons");
                 ArrayList<String> loremontures = new ArrayList<String>();
@@ -379,7 +378,7 @@ public class MainGui implements Listener
                 loremontures.add(" §f  §7acompagnera dans le lobby !");
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
-                loremontures.add(" §f▶ §7Ballon actif: §e" + buyInfo.getArticleName().replace("&7Ballon:_", "").replace("&", "§").replace("_", " "));
+                loremontures.add(" §f▶ §7Ballon actif: §e" + CosmeticsListListener.ballonList.get(activeBallon).replace("&7Ballon:_", "").replace("&", "§").replace("_", " "));
                 loremontures.add(" §f▶ §7Ballon possédés: §a" + ballonbuy.size() + "§a/" + CosmeticsListListener.ballonList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
@@ -430,10 +429,10 @@ public class MainGui implements Listener
         
         if (titrebuy.size() != 0)
         {
-        	if (data.getActiveTitre() != 0)
+            Integer activeTitre = data.getActiveTitre();
+        	if (activeTitre != 0)
         	{
-				StoreInfo buyInfo = new StoreInfo(data.getActiveTitre());
-        		
+
         		ItemStack montures = new ItemStack(Material.NAME_TAG, 1);
                 ItemMeta monturesM = montures.getItemMeta();
                 monturesM.setDisplayName("§e§lTitres");
@@ -445,7 +444,7 @@ public class MainGui implements Listener
                 loremontures.add(" §f  §7acompagnera dans le lobby !");
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
-                loremontures.add(" §f▶ §7Titre actif: §e" + buyInfo.getArticleName().replace("&7Titre:_", "").replace("&", "§").replace("_", " "));
+                loremontures.add(" §f▶ §7Titre actif: §e" + CosmeticsListListener.titreList.get(activeTitre).replace("&7Titre:_", "").replace("&", "§").replace("_", " "));
                 loremontures.add(" §f▶ §7Titre possédés: §a" + titrebuy.size() + "§a/" + CosmeticsListListener.titreList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");

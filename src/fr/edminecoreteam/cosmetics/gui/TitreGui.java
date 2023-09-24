@@ -85,8 +85,9 @@ public class TitreGui implements Listener
             {
         		if (info.getArticleIDByName() != 0)
                 {
+					int activeTitre = data.getActiveTitre();
                 	int articleID = info.getArticleIDByName();
-                	if (data.getActiveTitre() == articleID)
+                	if (activeTitre == articleID)
                 	{
                 		CustomTitreType tListener = new CustomTitreType(p);
                 		data.updateTitre(0);
@@ -96,7 +97,7 @@ public class TitreGui implements Listener
                 	}
                 	else
                 	{
-                		if (data.getActiveTitre() != 0)
+                		if (activeTitre != 0)
                 		{
                 			data.updateTitre(articleID);
                     		for (String articles : api.getConfig().getConfigurationSection("cosmetics.type.titres").getKeys(false))
@@ -245,13 +246,14 @@ public class TitreGui implements Listener
             
             int slot = 20;
         	int cosmeticsCount = 0;
+			int activeTitre = data.getActiveTitre();
             for (Integer friends : pGestion.getCosmeticsForPage(Page, "titres")) {
             	++cosmeticsCount;
             	ItemStack cosmetic = new ItemStack(Material.NAME_TAG, 1);
                 ItemMeta cosmeticM = cosmetic.getItemMeta();
                 cosmeticM.setDisplayName(CosmeticsListListener.titreList.get(friends).replace("&7Titre:_", "").replace("&", "§").replace("_", " "));
                 ArrayList<String> lorecosmetic = new ArrayList<String>();
-                if (data.getActiveTitre() == friends)
+                if (activeTitre == friends)
                 {
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §aDescription:");

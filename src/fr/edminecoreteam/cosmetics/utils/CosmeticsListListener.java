@@ -2,8 +2,10 @@ package fr.edminecoreteam.cosmetics.utils;
 
 import fr.edminecoreteam.cosmetics.Main;
 import fr.edminecoreteam.cosmetics.store.StoreInfo;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class CosmeticsListListener {
     private static Main main = Main.getInstance();
@@ -20,6 +22,8 @@ public class CosmeticsListListener {
     public static HashMap<Integer, String> ballonList = new HashMap<>();
     public static HashMap<Integer, Integer> ballonRarete = new HashMap<>();
     public static HashMap<Integer, String> cosmeticSkull = new HashMap<>();
+
+    public static HashMap<String, List<Integer>> purchaseListOfPlayer = new HashMap<>();
 
     public static void getCosmeticsList() {
         for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.montures").getKeys(false)) {
@@ -58,4 +62,5 @@ public class CosmeticsListListener {
             titreList.put(cosmeticID, info.getArticleName());
         }
     }
+
 }

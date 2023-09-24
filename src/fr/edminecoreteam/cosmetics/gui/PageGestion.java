@@ -33,7 +33,7 @@ public class PageGestion
 		int CosmeticsOnPage = 0;
 
 		PurchaseData buyData = new PurchaseData(p.getName());
-		List<Integer> cosList = buyData.getAllArticle();
+		List<Integer> cosList = CosmeticsListListener.purchaseListOfPlayer.get(p.getName());
 
 		for (String articles : main.getConfig().getConfigurationSection("cosmetics.type." + type).getKeys(false))
         {
@@ -85,7 +85,7 @@ public class PageGestion
 		List<Integer> cosmeticsPageList = new ArrayList<Integer>();
 		
 		PurchaseData buyData = new PurchaseData(p.getName());
-		List<Integer> cosList = buyData.getAllArticle();
+		List<Integer> cosList = CosmeticsListListener.purchaseListOfPlayer.get(p.getName());
 		for (String articles : main.getConfig().getConfigurationSection("cosmetics.type." + type).getKeys(false))
         {
 			int articleID = main.getConfig().getInt("cosmetics.type." + type + "." + articles + ".referenceid");

@@ -88,8 +88,9 @@ public class MontureGui implements Listener
             {
         		if (info.getArticleIDByName() != 0)
                 {
+					int activeMonture = data.getActiveMonture();
                 	int articleID = info.getArticleIDByName();
-                	if (data.getActiveMonture() == articleID)
+                	if (activeMonture == articleID)
                 	{
                 		MountListener mListener = new MountListener(p);
                 		mListener.desequip();
@@ -98,7 +99,7 @@ public class MontureGui implements Listener
                 	}
                 	else
                 	{
-                		if (data.getActiveMonture() != 0)
+                		if (activeMonture != 0)
                 		{
                 			data.updateMonture(articleID);
                     		for (String articles : api.getConfig().getConfigurationSection("cosmetics.type.montures").getKeys(false))
@@ -247,14 +248,15 @@ public class MontureGui implements Listener
             
             int slot = 20;
         	int cosmeticsCount = 0;
-            for (Integer friends : pGestion.getCosmeticsForPage(Page, "montures")) {
+		int activeMonture = data.getActiveFamilier();
+		for (Integer friends : pGestion.getCosmeticsForPage(Page, "montures")) {
             	++cosmeticsCount;
             	StoreInfo info = new StoreInfo(friends);
             	ItemStack cosmetic = getSkull("http://textures.minecraft.net/texture/" + CosmeticsListListener.cosmeticSkull.get(friends));
                 ItemMeta cosmeticM = cosmetic.getItemMeta();
                 cosmeticM.setDisplayName(CosmeticsListListener.montureList.get(friends).replace("&7Monture:_", "").replace("&", "§").replace("_", " "));
                 ArrayList<String> lorecosmetic = new ArrayList<String>();
-                if (data.getActiveMonture() == friends)
+                if (activeMonture == friends)
                 {
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §aDescription:");

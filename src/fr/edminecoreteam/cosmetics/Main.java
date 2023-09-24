@@ -23,9 +23,6 @@ import fr.edminecoreteam.cosmetics.item.JoinListener;
 import fr.edminecoreteam.cosmetics.listeners.PlayerJoinListener;
 import fr.edminecoreteam.cosmetics.listeners.PlayerQuitListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Main extends JavaPlugin
 {

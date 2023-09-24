@@ -85,8 +85,9 @@ public class BallonGui implements Listener
             {
         		if (info.getArticleIDByName() != 0)
                 {
+					int activeBallon = data.getActiveBallon();
                 	int articleID = info.getArticleIDByName();
-                	if (data.getActiveBallon() == articleID)
+                	if (activeBallon == articleID)
                 	{
                 		CustomBallonType bListener = new CustomBallonType(p);
                 		data.updateBallon(0);
@@ -96,7 +97,7 @@ public class BallonGui implements Listener
                 	}
                 	else
                 	{
-                		if (data.getActiveBallon() != 0)
+                		if (activeBallon != 0)
                 		{
                 			data.updateBallon(articleID);
                     		for (String articles : api.getConfig().getConfigurationSection("cosmetics.type.ballons").getKeys(false))
@@ -245,6 +246,7 @@ public class BallonGui implements Listener
             
             int slot = 20;
         	int cosmeticsCount = 0;
+			int activeBallon = data.getActiveBallon();
             for (Integer friends : pGestion.getCosmeticsForPage(Page, "ballons")) {
             	++cosmeticsCount;
             	StoreInfo info = new StoreInfo(friends);
@@ -252,7 +254,7 @@ public class BallonGui implements Listener
                 ItemMeta cosmeticM = cosmetic.getItemMeta();
                 cosmeticM.setDisplayName(CosmeticsListListener.ballonList.get(friends).replace("&7Ballon:_", "").replace("&", "§").replace("_", " "));
                 ArrayList<String> lorecosmetic = new ArrayList<String>();
-                if (data.getActiveBallon() == friends)
+                if (activeBallon == friends)
                 {
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §aDescription:");

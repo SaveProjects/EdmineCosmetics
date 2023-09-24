@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Locale;
 
 import fr.edminecoreteam.cosmetics.edorm.MySQL;
+import fr.edminecoreteam.cosmetics.utils.CosmeticsListListener;
+import org.bukkit.Bukkit;
 
 public class PurchaseData 
 {
@@ -79,11 +81,11 @@ public class PurchaseData
         return false;
     }
 
-    public List<Integer> getAllArticle(){
+   /* public List<Integer> getAllArticle(){
         List <Integer> buyList = new ArrayList<Integer>();
 
         try {
-            PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT ed_shop_purchase.article_id FROM ed_shop_purchase,ed_shop_articles WHERE player_name = ? AND ed_shop_purchase.article_id = ed_shop_articles.article_id AND article_type = 'cosmetics'");
+                PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT ed_shop_purchase.article_id FROM ed_shop_purchase,ed_shop_articles WHERE player_name = ? AND ed_shop_purchase.article_id = ed_shop_articles.article_id AND article_type = 'cosmetics'");
 
             ps.setString(1, pS);
             ResultSet rs = ps.executeQuery();
@@ -94,6 +96,27 @@ public class PurchaseData
         catch (SQLException e){
             e.printStackTrace();
         }
+        Bukkit.broadcastMessage("load fini");
+        return buyList;
+    }*/
+
+    public List<Integer> getAllArticle(){
+        List <Integer> buyList = new ArrayList<Integer>();
+
+        try {
+            PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT article_id FROM ed_shop_purchase WHERE player_name = ?");
+
+            ps.setString(1, pS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                buyList.add(rs.getInt("article_id"));
+
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        CosmeticsListListener.purchaseListOfPlayer.put(pS, buyList);
         return buyList;
     }
 }
