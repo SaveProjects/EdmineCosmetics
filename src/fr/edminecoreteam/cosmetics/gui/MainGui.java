@@ -3,6 +3,7 @@ package fr.edminecoreteam.cosmetics.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.edminecoreteam.cosmetics.utils.CosmeticsListListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -43,8 +44,64 @@ public class MainGui implements Listener
             List<Integer> familierbuy = new ArrayList<Integer>();
             List<Integer> ballonbuy = new ArrayList<Integer>();
             List<Integer> titrebuy = new ArrayList<Integer>();
-            
-            for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.montures").getKeys(false))
+
+            List<Integer> buyList = buyData.getAllArticle();
+
+
+            for (Integer article : CosmeticsListListener.montureList.keySet()){
+                if (buyList.contains(article)){
+                    monturebuy.add(article);
+                }
+            }
+
+            for(Integer article : CosmeticsListListener.titreList.keySet()) {
+                if (buyList.contains(article)) {
+                    titrebuy.add(article);
+                }
+            }
+
+            for(Integer article : CosmeticsListListener.ballonList.keySet()) {
+                if (buyList.contains(article)) {
+                    ballonbuy.add(article);
+                }
+            }
+
+            for(Integer article : CosmeticsListListener.familierList.keySet()) {
+                if (buyList.contains(article)) {
+                    familierbuy.add(article);
+                }
+            }
+
+           /* for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.montures").getKeys(false)){
+                if(buyList.contains(main.getConfig().getInt("cosmetics.type.montures." + articles + ".referenceid"))){
+                    monturebuy.add(main.getConfig().getInt("cosmetics.type.montures." + articles + ".referenceid"));
+                }
+            }
+
+            for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.compagnons").getKeys(false))
+            {
+                if (buyList.contains(main.getConfig().getInt("cosmetics.type.compagnons." + articles + ".referenceid")))
+                {
+                    familierbuy.add(main.getConfig().getInt("cosmetics.type.compagnons." + articles + ".referenceid"));
+                }
+            }
+
+            for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.ballons").getKeys(false))
+            {
+                if (buyList.contains(main.getConfig().getInt("cosmetics.type.ballons." + articles + ".referenceid")))
+                {
+                    ballonbuy.add(main.getConfig().getInt("cosmetics.type.ballons." + articles + ".referenceid"));
+                }
+            }
+
+            for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.titres").getKeys(false))
+            {
+                if (buyList.contains(main.getConfig().getInt("cosmetics.type.titres." + articles + ".referenceid")))
+                {
+                    titrebuy.add(main.getConfig().getInt("cosmetics.type.titres." + articles + ".referenceid"));
+                }
+            }*/
+            /*for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.montures").getKeys(false))
             {
             	if (buyData.hasArticle(main.getConfig().getInt("cosmetics.type.montures." + articles + ".referenceid")))
             	{
@@ -72,7 +129,7 @@ public class MainGui implements Listener
             		titrebuy.add(main.getConfig().getInt("cosmetics.type.titres." + articles + ".referenceid"));
             	}
             }
-            
+            */
             if (it.getType() == Material.SADDLE || it.getType() == Material.SKULL_ITEM || it.getType() == Material.NAME_TAG)
             {
             	if(it.getItemMeta().getDisplayName() == "§6§lMontures")
@@ -80,7 +137,7 @@ public class MainGui implements Listener
             		if (monturebuy.size() != 0)
                     {
             			p.playSound(p.getLocation(), Sound.CLICK, 1.0f, 1.0f);
-            			MontureGui.gui(p, 1, pGestion.getCosmeticsPageNumber("montures"));
+            			MontureGui.gui(p, 1, pGestion.getCosmeticsPageNumber("montures", buyList));
                     }
             		else
             		{
@@ -92,7 +149,7 @@ public class MainGui implements Listener
             		if (familierbuy.size() != 0)
                     {
             			p.playSound(p.getLocation(), Sound.CLICK, 1.0f, 1.0f);
-            			FamilierGui.gui(p, 1, pGestion.getCosmeticsPageNumber("compagnons"));
+            			FamilierGui.gui(p, 1, pGestion.getCosmeticsPageNumber("compagnons", buyList));
                     }
             		else
             		{
@@ -104,7 +161,7 @@ public class MainGui implements Listener
             		if (ballonbuy.size() != 0)
                     {
             			p.playSound(p.getLocation(), Sound.CLICK, 1.0f, 1.0f);
-            			BallonGui.gui(p, 1, pGestion.getCosmeticsPageNumber("ballons"));
+            			BallonGui.gui(p, 1, pGestion.getCosmeticsPageNumber("ballons", buyList));
                     }
             		else
             		{
@@ -116,7 +173,7 @@ public class MainGui implements Listener
             		if (titrebuy.size() != 0)
                     {
             			p.playSound(p.getLocation(), Sound.CLICK, 1.0f, 1.0f);
-            			TitreGui.gui(p, 1, pGestion.getCosmeticsPageNumber("titres"));
+            			TitreGui.gui(p, 1, pGestion.getCosmeticsPageNumber("titres", buyList));
                     }
             		else
             		{
@@ -145,34 +202,32 @@ public class MainGui implements Listener
         List<Integer> familierbuy = new ArrayList<Integer>();
         List<Integer> ballonbuy = new ArrayList<Integer>();
         List<Integer> titrebuy = new ArrayList<Integer>();
-        
-        for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.montures").getKeys(false))
-        {
-        	if (buyData.hasArticle(main.getConfig().getInt("cosmetics.type.montures." + articles + ".referenceid")))
-        	{
-        		monturebuy.add(main.getConfig().getInt("cosmetics.type.montures." + articles + ".referenceid"));
-        	}
+
+        List<Integer> buyList = buyData.getAllArticle();
+
+
+        for (Integer article : CosmeticsListListener.montureList.keySet()){
+            if (buyList.contains(article)){
+                monturebuy.add(article);
+            }
         }
-        for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.compagnons").getKeys(false))
-        {
-        	if (buyData.hasArticle(main.getConfig().getInt("cosmetics.type.compagnons." + articles + ".referenceid")))
-        	{
-        		familierbuy.add(main.getConfig().getInt("cosmetics.type.compagnons." + articles + ".referenceid"));
-        	}
+
+        for(Integer article : CosmeticsListListener.titreList.keySet()) {
+            if (buyList.contains(article)) {
+                titrebuy.add(article);
+            }
         }
-        for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.ballons").getKeys(false))
-        {
-        	if (buyData.hasArticle(main.getConfig().getInt("cosmetics.type.ballons." + articles + ".referenceid")))
-        	{
-        		ballonbuy.add(main.getConfig().getInt("cosmetics.type.ballons." + articles + ".referenceid"));
-        	}
+
+        for(Integer article : CosmeticsListListener.ballonList.keySet()) {
+            if (buyList.contains(article)) {
+                ballonbuy.add(article);
+            }
         }
-        for (String articles : main.getConfig().getConfigurationSection("cosmetics.type.titres").getKeys(false))
-        {
-        	if (buyData.hasArticle(main.getConfig().getInt("cosmetics.type.titres." + articles + ".referenceid")))
-        	{
-        		titrebuy.add(main.getConfig().getInt("cosmetics.type.titres." + articles + ".referenceid"));
-        	}
+
+        for(Integer article : CosmeticsListListener.familierList.keySet()) {
+            if (buyList.contains(article)) {
+                familierbuy.add(article);
+            }
         }
         
         if (monturebuy.size() != 0)
@@ -193,7 +248,7 @@ public class MainGui implements Listener
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
                 loremontures.add(" §f▶ §7Monture actif: §e" + buyInfo.getArticleName().replace("&7Monture:_", "").replace("&", "§"));
-                loremontures.add(" §f▶ §7Monture possédés: §a" + data.getCosmeticsUnlock("montures").size() + "§a/" + data.getCosmeticsCount("montures"));
+                loremontures.add(" §f▶ §7Monture possédés: §a" + monturebuy.size() + "§a/" + CosmeticsListListener.montureList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
                 monturesM.setLore(loremontures);
@@ -214,7 +269,7 @@ public class MainGui implements Listener
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
                 loremontures.add(" §f▶ §7Monture actif: §caucune");
-                loremontures.add(" §f▶ §7Monture possédés: §a" + data.getCosmeticsUnlock("montures").size() + "§a/" + data.getCosmeticsCount("montures"));
+                loremontures.add(" §f▶ §7Monture possédés: §a" + monturebuy.size() + "§a/" + CosmeticsListListener.montureList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
                 monturesM.setLore(loremontures);
@@ -259,7 +314,7 @@ public class MainGui implements Listener
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
                 loremontures.add(" §f▶ §7Compagnon actif: §e" + buyInfo.getArticleName().replace("&7Compagnon:_", "").replace("&", "§").replace("_", " "));
-                loremontures.add(" §f▶ §7Compagnon possédés: §a" + data.getCosmeticsUnlock("compagnons").size() + "§a/" + data.getCosmeticsCount("compagnons"));
+                loremontures.add(" §f▶ §7Compagnon possédés: §a" + familierbuy.size() + "§a/" + CosmeticsListListener.familierList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
                 monturesM.setLore(loremontures);
@@ -280,7 +335,7 @@ public class MainGui implements Listener
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
                 loremontures.add(" §f▶ §7Compagnon actif: §caucun");
-                loremontures.add(" §f▶ §7Compagnon possédés: §a" + data.getCosmeticsUnlock("compagnons").size() + "§a/" + data.getCosmeticsCount("compagnons"));
+                loremontures.add(" §f▶ §7Compagnon possédés: §a" + familierbuy.size() + "§a/" + CosmeticsListListener.familierList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
                 monturesM.setLore(loremontures);
@@ -325,7 +380,7 @@ public class MainGui implements Listener
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
                 loremontures.add(" §f▶ §7Ballon actif: §e" + buyInfo.getArticleName().replace("&7Ballon:_", "").replace("&", "§").replace("_", " "));
-                loremontures.add(" §f▶ §7Ballon possédés: §a" + data.getCosmeticsUnlock("ballons").size() + "§a/" + data.getCosmeticsCount("ballons"));
+                loremontures.add(" §f▶ §7Ballon possédés: §a" + ballonbuy.size() + "§a/" + CosmeticsListListener.ballonList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
                 monturesM.setLore(loremontures);
@@ -346,7 +401,7 @@ public class MainGui implements Listener
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
                 loremontures.add(" §f▶ §7Ballon actif: §caucun");
-                loremontures.add(" §f▶ §7Ballon possédés: §a" + data.getCosmeticsUnlock("ballons").size() + "§a/" + data.getCosmeticsCount("ballons"));
+                loremontures.add(" §f▶ §7Ballon possédés: §a" + ballonbuy.size() + "§a/" + CosmeticsListListener.ballonList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
                 monturesM.setLore(loremontures);
@@ -391,7 +446,7 @@ public class MainGui implements Listener
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
                 loremontures.add(" §f▶ §7Titre actif: §e" + buyInfo.getArticleName().replace("&7Titre:_", "").replace("&", "§").replace("_", " "));
-                loremontures.add(" §f▶ §7Titre possédés: §a" + data.getCosmeticsUnlock("titres").size() + "§a/" + data.getCosmeticsCount("titres"));
+                loremontures.add(" §f▶ §7Titre possédés: §a" + titrebuy.size() + "§a/" + CosmeticsListListener.titreList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
                 monturesM.setLore(loremontures);
@@ -412,7 +467,7 @@ public class MainGui implements Listener
                 loremontures.add("");
                 loremontures.add(" §dInformations:");
                 loremontures.add(" §f▶ §7Titre actif: §caucun");
-                loremontures.add(" §f▶ §7Titre possédés: §a" + data.getCosmeticsUnlock("titres").size() + "§a/" + data.getCosmeticsCount("titres"));
+                loremontures.add(" §f▶ §7Titre possédés: §a" + titrebuy.size() + "§a/" + CosmeticsListListener.titreList.size());
                 loremontures.add("");
                 loremontures.add("§8➡ §fCliquez pour y accéder.");
                 monturesM.setLore(loremontures);

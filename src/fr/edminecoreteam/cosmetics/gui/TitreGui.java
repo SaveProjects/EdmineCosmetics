@@ -3,6 +3,7 @@ package fr.edminecoreteam.cosmetics.gui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fr.edminecoreteam.cosmetics.utils.CosmeticsListListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -23,7 +24,6 @@ import fr.edminecoreteam.cosmetics.Main;
 import fr.edminecoreteam.cosmetics.data.CosmeticsData;
 import fr.edminecoreteam.cosmetics.entity.titres.CustomTitreType;
 import fr.edminecoreteam.cosmetics.store.StoreData;
-import fr.edminecoreteam.cosmetics.store.StoreInfo;
 import fr.edminecoreteam.cosmetics.utils.SkullNBT;
 
 public class TitreGui implements Listener
@@ -247,10 +247,9 @@ public class TitreGui implements Listener
         	int cosmeticsCount = 0;
             for (Integer friends : pGestion.getCosmeticsForPage(Page, "titres")) {
             	++cosmeticsCount;
-            	StoreInfo info = new StoreInfo(friends);
             	ItemStack cosmetic = new ItemStack(Material.NAME_TAG, 1);
                 ItemMeta cosmeticM = cosmetic.getItemMeta();
-                cosmeticM.setDisplayName(info.getArticleName().replace("&7Titre:_", "").replace("&", "§").replace("_", " "));
+                cosmeticM.setDisplayName(CosmeticsListListener.titreList.get(friends).replace("&7Titre:_", "").replace("&", "§").replace("_", " "));
                 ArrayList<String> lorecosmetic = new ArrayList<String>();
                 if (data.getActiveTitre() == friends)
                 {
@@ -261,23 +260,23 @@ public class TitreGui implements Listener
                 	lorecosmetic.add(" §f  §7le lobby du serveur !");
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §dInformation:");
-                	if (info.getArticleRarity() == 1)
+                	if (CosmeticsListListener.titreRarete.get(friends) == 1)
     	            {
                 		lorecosmetic.add(" §f▶ §7Rareté: §6✯§8✯✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 2)
+    	            else if (CosmeticsListListener.titreRarete.get(friends) == 2)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯§8✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 3)
+    	            else if (CosmeticsListListener.titreRarete.get(friends) == 3)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯§8✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 4)
+    	            else if (CosmeticsListListener.titreRarete.get(friends) == 4)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯§8✯");
     	            }
-    	            else if (info.getArticleRarity() == 5)
+    	            else if (CosmeticsListListener.titreRarete.get(friends) == 5)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯✯");
     	            }
@@ -294,23 +293,23 @@ public class TitreGui implements Listener
                 	lorecosmetic.add(" §f  §7parcourir le lobby !");
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §dInformation:");
-                	if (info.getArticleRarity() == 1)
+                	if (CosmeticsListListener.titreRarete.get(friends) == 1)
     	            {
                 		lorecosmetic.add(" §f▶ §7Rareté: §6✯§8✯✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 2)
+    	            else if (CosmeticsListListener.titreRarete.get(friends) == 2)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯§8✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 3)
+    	            else if (CosmeticsListListener.titreRarete.get(friends) == 3)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯§8✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 4)
+    	            else if (CosmeticsListListener.titreRarete.get(friends) == 4)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯§8✯");
     	            }
-    	            else if (info.getArticleRarity() == 5)
+    	            else if (CosmeticsListListener.titreRarete.get(friends) == 5)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯✯");
     	            }

@@ -3,6 +3,7 @@ package fr.edminecoreteam.cosmetics.gui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fr.edminecoreteam.cosmetics.utils.CosmeticsListListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -247,9 +248,9 @@ public class BallonGui implements Listener
             for (Integer friends : pGestion.getCosmeticsForPage(Page, "ballons")) {
             	++cosmeticsCount;
             	StoreInfo info = new StoreInfo(friends);
-            	ItemStack cosmetic = getSkull("http://textures.minecraft.net/texture/" + info.getArticleSkull());
+            	ItemStack cosmetic = getSkull("http://textures.minecraft.net/texture/" + CosmeticsListListener.cosmeticSkull.get(friends));
                 ItemMeta cosmeticM = cosmetic.getItemMeta();
-                cosmeticM.setDisplayName(info.getArticleName().replace("&7Ballon:_", "").replace("&", "§").replace("_", " "));
+                cosmeticM.setDisplayName(CosmeticsListListener.ballonList.get(friends).replace("&7Ballon:_", "").replace("&", "§").replace("_", " "));
                 ArrayList<String> lorecosmetic = new ArrayList<String>();
                 if (data.getActiveBallon() == friends)
                 {
@@ -259,23 +260,23 @@ public class BallonGui implements Listener
                 	lorecosmetic.add(" §f  §7le lobby du serveur !");
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §dInformation:");
-                	if (info.getArticleRarity() == 1)
+                	if (CosmeticsListListener.ballonRarete.get(friends) == 1)
     	            {
                 		lorecosmetic.add(" §f▶ §7Rareté: §6✯§8✯✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 2)
+    	            else if (CosmeticsListListener.ballonRarete.get(friends) == 2)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯§8✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 3)
+    	            else if (CosmeticsListListener.ballonRarete.get(friends) == 3)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯§8✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 4)
+    	            else if (CosmeticsListListener.ballonRarete.get(friends) == 4)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯§8✯");
     	            }
-    	            else if (info.getArticleRarity() == 5)
+    	            else if (CosmeticsListListener.ballonRarete.get(friends) == 5)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯✯");
     	            }
@@ -292,23 +293,23 @@ public class BallonGui implements Listener
                 	lorecosmetic.add(" §f  §7pour parcourir le lobby !");
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §dInformation:");
-                	if (info.getArticleRarity() == 1)
+                	if (CosmeticsListListener.ballonRarete.get(friends) == 1)
     	            {
                 		lorecosmetic.add(" §f▶ §7Rareté: §6✯§8✯✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 2)
+    	            else if (CosmeticsListListener.ballonRarete.get(friends) == 2)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯§8✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 3)
+    	            else if (CosmeticsListListener.ballonRarete.get(friends) == 3)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯§8✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 4)
+    	            else if (CosmeticsListListener.ballonRarete.get(friends) == 4)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯§8✯");
     	            }
-    	            else if (info.getArticleRarity() == 5)
+    	            else if (CosmeticsListListener.ballonRarete.get(friends) == 5)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯✯");
     	            }

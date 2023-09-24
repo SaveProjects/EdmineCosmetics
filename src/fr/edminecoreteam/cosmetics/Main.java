@@ -1,5 +1,6 @@
 package fr.edminecoreteam.cosmetics;
 
+import fr.edminecoreteam.cosmetics.utils.CosmeticsListListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -22,12 +23,17 @@ import fr.edminecoreteam.cosmetics.item.JoinListener;
 import fr.edminecoreteam.cosmetics.listeners.PlayerJoinListener;
 import fr.edminecoreteam.cosmetics.listeners.PlayerQuitListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Main extends JavaPlugin
 {
 	private static Main instance;
 	
 	public MySQL database;
+
+
 	private SQLState sqlState;
 	
 	@Override
@@ -37,12 +43,18 @@ public class Main extends JavaPlugin
 		
 		loadListeners();
 		loadCommands();
-		
+
+		loadCosmeticsList();
+
 		loadMounts();
 		
 		System.out.println("EdmineCosmetics: Plugin Enable");
 	}
-	
+
+	private void loadCosmeticsList() {
+		CosmeticsListListener.getCosmeticsList();
+	}
+
 	@Override
 	public void onDisable() {
 		MySQLDisconnect();

@@ -4,7 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import fr.edminecoreteam.cosmetics.edorm.MySQL;
@@ -75,5 +77,23 @@ public class PurchaseData
             return false;
         }
         return false;
+    }
+
+    public List<Integer> getAllArticle(){
+        List <Integer> buyList = new ArrayList<Integer>();
+
+        try {
+            PreparedStatement ps = MySQL.getConnection().prepareStatement("SELECT ed_shop_purchase.article_id FROM ed_shop_purchase,ed_shop_articles WHERE player_name = ? AND ed_shop_purchase.article_id = ed_shop_articles.article_id AND article_type = 'cosmetics'");
+
+            ps.setString(1, pS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                buyList.add(rs.getInt("article_id"));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return buyList;
     }
 }

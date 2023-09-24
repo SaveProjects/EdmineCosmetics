@@ -3,6 +3,7 @@ package fr.edminecoreteam.cosmetics.gui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fr.edminecoreteam.cosmetics.utils.CosmeticsListListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -249,9 +250,9 @@ public class MontureGui implements Listener
             for (Integer friends : pGestion.getCosmeticsForPage(Page, "montures")) {
             	++cosmeticsCount;
             	StoreInfo info = new StoreInfo(friends);
-            	ItemStack cosmetic = getSkull("http://textures.minecraft.net/texture/" + info.getArticleSkull());
+            	ItemStack cosmetic = getSkull("http://textures.minecraft.net/texture/" + CosmeticsListListener.cosmeticSkull.get(friends));
                 ItemMeta cosmeticM = cosmetic.getItemMeta();
-                cosmeticM.setDisplayName(info.getArticleName().replace("&7Monture:_", "").replace("&", "§").replace("_", " "));
+                cosmeticM.setDisplayName(CosmeticsListListener.montureList.get(friends).replace("&7Monture:_", "").replace("&", "§").replace("_", " "));
                 ArrayList<String> lorecosmetic = new ArrayList<String>();
                 if (data.getActiveMonture() == friends)
                 {
@@ -262,23 +263,23 @@ public class MontureGui implements Listener
                 	lorecosmetic.add(" §f  §7le lobby du serveur !");
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §dInformation:");
-                	if (info.getArticleRarity() == 1)
+                	if (CosmeticsListListener.montureRarete.get(friends) == 1)
     	            {
                 		lorecosmetic.add(" §f▶ §7Rareté: §6✯§8✯✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 2)
+    	            else if (CosmeticsListListener.montureRarete.get(friends) == 2)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯§8✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 3)
+    	            else if (CosmeticsListListener.montureRarete.get(friends) == 3)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯§8✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 4)
+    	            else if (CosmeticsListListener.montureRarete.get(friends) == 4)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯§8✯");
     	            }
-    	            else if (info.getArticleRarity() == 5)
+    	            else if (CosmeticsListListener.montureRarete.get(friends) == 5)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯✯");
     	            }
@@ -295,23 +296,23 @@ public class MontureGui implements Listener
                 	lorecosmetic.add(" §f  §7parcourir le lobby !");
                 	lorecosmetic.add("");
                 	lorecosmetic.add(" §dInformation:");
-                	if (info.getArticleRarity() == 1)
+                	if (CosmeticsListListener.montureRarete.get(friends) == 1)
     	            {
                 		lorecosmetic.add(" §f▶ §7Rareté: §6✯§8✯✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 2)
+    	            else if (CosmeticsListListener.montureRarete.get(friends) == 2)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯§8✯✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 3)
+    	            else if (CosmeticsListListener.montureRarete.get(friends) == 3)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯§8✯✯");
     	            }
-    	            else if (info.getArticleRarity() == 4)
+    	            else if (CosmeticsListListener.montureRarete.get(friends) == 4)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯§8✯");
     	            }
-    	            else if (info.getArticleRarity() == 5)
+    	            else if (CosmeticsListListener.montureRarete.get(friends) == 5)
     	            {
     	            	lorecosmetic.add(" §f▶ §7Rareté: §6✯✯✯✯✯");
     	            }

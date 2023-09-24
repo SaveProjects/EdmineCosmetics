@@ -1,8 +1,10 @@
 package fr.edminecoreteam.cosmetics.gui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import fr.edminecoreteam.cosmetics.utils.CosmeticsListListener;
 import org.bukkit.entity.Player;
 
 import fr.edminecoreteam.cosmetics.Main;
@@ -29,12 +31,14 @@ public class PageGestion
 	public int getCosmeticsPageNumber(String type) {
 		int Page = 1;
 		int CosmeticsOnPage = 0;
-		
+
 		PurchaseData buyData = new PurchaseData(p.getName());
+		List<Integer> cosList = buyData.getAllArticle();
+
 		for (String articles : main.getConfig().getConfigurationSection("cosmetics.type." + type).getKeys(false))
         {
 			int articleID = main.getConfig().getInt("cosmetics.type." + type + "." + articles + ".referenceid");
-        	if (buyData.hasArticle(articleID))
+        	if (cosList.contains(articleID))
         	{
         		if (CosmeticsOnPage == 10)
                 {
@@ -49,6 +53,29 @@ public class PageGestion
         }
 	    return Page;
 	}
+
+	public int getCosmeticsPageNumber(String type, List<Integer> buyList) {
+		int Page = 1;
+		int CosmeticsOnPage = 0;
+
+		for (String articles : main.getConfig().getConfigurationSection("cosmetics.type." + type).getKeys(false))
+		{
+			int articleID = main.getConfig().getInt("cosmetics.type." + type + "." + articles + ".referenceid");
+			if (buyList.contains(articleID))
+			{
+				if (CosmeticsOnPage == 10)
+				{
+					CosmeticsOnPage = 0;
+					++Page;
+				}
+				else
+				{
+					++CosmeticsOnPage;
+				}
+			}
+		}
+		return Page;
+	}
 	
 	public List<Integer> getCosmeticsForPage(int Page, String type) {
 		int cosmeticsPerPage = 10;
@@ -58,10 +85,11 @@ public class PageGestion
 		List<Integer> cosmeticsPageList = new ArrayList<Integer>();
 		
 		PurchaseData buyData = new PurchaseData(p.getName());
+		List<Integer> cosList = buyData.getAllArticle();
 		for (String articles : main.getConfig().getConfigurationSection("cosmetics.type." + type).getKeys(false))
         {
 			int articleID = main.getConfig().getInt("cosmetics.type." + type + "." + articles + ".referenceid");
-        	if (buyData.hasArticle(articleID))
+        	if (cosList.contains(articleID))
         	{
         		if (sqlPage != Page)
                 {
