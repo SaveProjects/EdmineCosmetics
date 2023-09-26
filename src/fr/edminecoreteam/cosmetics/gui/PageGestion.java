@@ -1,7 +1,6 @@
 package fr.edminecoreteam.cosmetics.gui;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import fr.edminecoreteam.cosmetics.utils.CosmeticsListListener;
@@ -32,7 +31,6 @@ public class PageGestion
 		int Page = 1;
 		int CosmeticsOnPage = 0;
 
-		PurchaseData buyData = new PurchaseData(p.getName());
 		List<Integer> cosList = CosmeticsListListener.purchaseListOfPlayer.get(p.getName());
 
 		for (String articles : main.getConfig().getConfigurationSection("cosmetics.type." + type).getKeys(false))
